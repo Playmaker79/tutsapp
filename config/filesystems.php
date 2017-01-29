@@ -59,6 +59,21 @@ return [
             'root' => storage_path('app/public/cv'),
             'visibility' => 'public',
         ],
+        'videos' =>[
+            'driver' =>'local',
+            'root' => storage_path('app/public/videos'),
+            'visibility' => 'public',
+        ],
+        'pdf' =>[
+            'driver' =>'local',
+            'root' => storage_path('app/public/pdf'),
+            'visibility' => 'public',
+        ],
+        'cover' =>[
+            'driver' =>'local',
+            'root' => storage_path('app/public/cover'),
+            'visibility' => 'public',
+        ],
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

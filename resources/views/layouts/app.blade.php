@@ -12,9 +12,6 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-  {{--  <link rel="stylesheet" href="http://demos.creative-tim.com/material-kit/assets/css/material-kit.css">
-    <script src="http://demos.creative-tim.com/material-kit/assets/js/material-kit.js"></script>
-    <script src="http://demos.creative-tim.com/material-kit/assets/js/material.min.js"></script>--}}
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -104,11 +101,9 @@
                 </div>
             </div>
         </nav>
-
+        {{--<!-- Scripts -->
+        --}}{{--<script src="/js/app.js"></script>--}}
         @yield('content')
     </div>
-
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
 </body>
 </html>

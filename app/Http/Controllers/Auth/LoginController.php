@@ -32,7 +32,6 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -57,7 +56,7 @@ class LoginController extends Controller
          * Get current user type
          * Redirect to the respective users dashboard */
 
-        if ($user_type =="admin")
+        /*if ($user_type =="admin")
 
             $this->redirectTo = '/admin/dashboard';
 
@@ -67,7 +66,7 @@ class LoginController extends Controller
 
         else if($user_type =="student")
 
-            $this->redirectTo = '/student/dashboard';
+            $this->redirectTo = '/student/dashboard';*/
 
         $request->session()->regenerate();
 

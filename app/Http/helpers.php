@@ -1,15 +1,12 @@
 <?php
 
-/**
- * @param $collection
- * @return array
- */
 /*helper methods used accross the project*/
 
 /*
     * iterate through each item
     * Generate Hash ids and store them in  a temp variable($hashed_items)
    */
+use Storage as Storage;
 function hashMake($collection)
 {
     $collection = $collection->toArray();
@@ -63,3 +60,29 @@ function isStudent(){
         false;
     }
 }
+
+
+/*generate a unique filename for uploads*/
+/**
+ * @param $file
+ * @return string
+ */
+function makeFilename($file){
+ $filename = time().str_random(10).'.'.$file->getClientOriginalExtension();
+    return $filename;
+}
+
+
+/**
+ * @param $file
+ * @param $disk
+ * @return string
+ */
+function storeFile($file, $disk){
+    $filename = makeFilename($file);
+    $file->storeAs('/',$filename,$disk);
+    return $filename;
+}
+
+
+

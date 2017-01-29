@@ -4,6 +4,7 @@
     background: white;
     border: 0.5px solid #dfdfdf;
 }
+
 </style>
 @section('content')
     <div class="container" id="course_form">

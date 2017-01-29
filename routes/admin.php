@@ -30,10 +30,6 @@ Route::group(['middleware' => ('role:admin') ,'prefix' => 'admin'], function () 
     Route::get('courses/all','admin\adminController@Allcourses')
         ->name('Allcourses');
 
-    /*Delete a particular course*/
-    Route::get('courses/{id}/delete','admin\adminController@deleteCourse')
-        ->name('deleteCourse');
-
     /*Approve a particular course*/
     Route::get('courses/{id}/approve','admin\adminController@approveCourse')
         ->name('approveCourse');
@@ -42,3 +38,5 @@ Route::group(['middleware' => ('role:admin') ,'prefix' => 'admin'], function () 
     Route::get('courses/{id}/disapprove','admin\adminController@disapproveCourse')
         ->name('disapproveCourse');
 });
+
+

@@ -31,13 +31,20 @@ Route::group(['middleware' => ('role:mentor'),'prefix' => 'mentor'], function ()
     Route::get('courses','mentor\mentorController@Courses')
         ->name('courses');
 
-    /*Delete a course from the users course list */
-    Route::get('courses/delete/{id}','mentor\mentorController@deleteCourse')
-        ->name('deleteCourse');
-
     /*manage a course from the users course list */
     Route::get('courses/manage/{id}','mentor\mentorController@manageCourse')
         ->name('manageCourse');
 
+    /*create a chapter for a course*/
+    Route::get('course/{id}/chapter/','mentor\mentorController@createChapter')
+        ->name('createChapter');
+
+    /*create a chapter for a course*/
+    Route::post('course/{id}/chapter/','mentor\mentorController@postChapter')
+        ->name('postChapter');
+
+    /*Delete a particular course*/
+    Route::get('courses/{id}/delete', 'admin\adminController@deleteCourse')
+        ->name('deleteCourse');
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\mentor;
 
+use App\chapter;
 use App\course;
 use App\cv;
 use Illuminate\Http\Request;
@@ -72,8 +73,8 @@ class mentorController extends Controller
         $course = new course();
         $course->name = $request->name;
         $course->description = $request->description;
-        $request->cover->store('cover','public');
-        $course->cover = $request->cover->hashName();
+        $course->cover = storeFile($request->cover,'cover');
+        /*$request->cover->store('cover','public');*/
         Auth::user()->course()->save($course);
         $message = Array(
             "subject"=>"Course created!",
@@ -85,7 +86,6 @@ class mentorController extends Controller
     /*show courses list view */
     public function  courses(){
         $courses = Auth::user()->course()->get();
-
         /*render course list page*/
         return view('mentor.courses')->with('courses',$courses);
     }
@@ -106,13 +106,41 @@ class mentorController extends Controller
           return redirect()->route('courses')->withErrors(['perm_error','You dont have  permission to delete that course']);
        }
     }
-
+    
     /*Manage a course */
     public  function manageCourse($course_id){
-        $course_id = hd($course_id);
-        $course = Auth::user()->course()->find($course_id);
+        $id = hd($course_id);
+        $course = course::with('chapter')->get()->all();
         if(count($course)!=0){
-            return view('course.chapter');
+            $course = course::with('chapter')->where('id',$id)->get()->first();
+           /* return($course);*/
+            return view('course.manage')->with('course',$course);
         }
+    }
+
+    /*create a new chapter*/
+    public  function createChapter($id){
+        $id = hd($id);
+        $course = course::select('id','name')->where('id',$id)->get()->first();
+        return view('course.newChapter')->with('course',$course);
+    }
+
+    /*handle a new chapter request*/
+    public  function postChapter($id,Request $request){
+        $id = hd($id);
+        $course = course::findOrFail($id)->first();
+        /*upload files to disk*/
+        $video = storeFile($request->video_tutorial,'videos');
+        $pdf = storeFile($request->pdfMaterial,'pdf');
+        /*create a new chapter instance*/
+        $chapter = new chapter();
+        $chapter->name = $request->name;
+        $chapter->notes = $request->notes;
+        $chapter->video = $video;
+        $chapter->pdf = $pdf;
+        $chapter->course()->associate($course);
+        /*dd($chapter);*/
+        $chapter->save();
+        return redirect()->route('courses');
     }
 }

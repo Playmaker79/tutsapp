@@ -23,11 +23,14 @@ class RoleCheck
 
     public function handle($request, Closure $next,$role)
     {
-        if(Auth::check() && Auth::user()->type == $role){
+        if(Auth::check() && Auth::user()->type == 'admin') {
+            return $next($request);
+        }
+        elseif(Auth::check() && Auth::user()->type == $role){
             return $next($request);
         }
         else{
-            throw  new NotFoundHttpException;
+            return redirect('/login');
         }
     }
 
