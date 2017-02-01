@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ('role:mentor'),'prefix' => 'mentor'], function () {
+Route::group(['middleware' =>[('role:mentor')],'prefix' => 'mentor'], function () {
 
     /* Show mentors dashboard when logged in */
     Route::get('dashboard','mentor\mentorController@showDashboard')->name('mentorDash');

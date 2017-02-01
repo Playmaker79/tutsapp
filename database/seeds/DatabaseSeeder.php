@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'steve@tutsapp.com',
             'password' => bcrypt('password'),
             'type' => 'student',
-            'status' => 'active'
+            'status' => 0
         ]);
 
         /*Creating mentor instance */
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'kevin@tutsapp.com',
             'password' => bcrypt('password'),
             'type' => 'mentor',
-            'status' => 'active'
+            'status' => 0
         ]);
 
         /*Creating Admin instance */
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'alex@tutsapp.com',
             'password' => bcrypt('password'),
             'type' => 'admin',
-            'status' => 'active'
+            'status' => 0
         ]);
     }
 }

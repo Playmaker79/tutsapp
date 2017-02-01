@@ -28,5 +28,7 @@ Route::get('user/{id}/unblock','admin\adminController@unblockUser')
     ->name('unblockUser');
 
 
+Route::get('cover/{id}','mentor\mentorController@coverImage')
+    ->name('coverImage');
 
 

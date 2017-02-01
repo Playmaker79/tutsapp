@@ -34,7 +34,7 @@
             @foreach($courses as $course)
             <tr>
                 <td>
-                   <b>{{$course['name']}}e</b>
+                   <b>{{$course['name']}}</b>
                 </td>
                 <td>
                     {{$course['description']}}

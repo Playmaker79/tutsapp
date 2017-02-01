@@ -11,6 +11,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\Types\Array_;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -39,6 +40,8 @@ class mentorController extends Controller
                 $cv = new cv();
                 $cv->path = $path;
                 Auth::user()->cv()->save($cv);
+                Auth::user()->status = 1;
+                return redirect('/home');
             }
             else{
                  return "<h1>The CV must be in PDF format. please upload again ".
@@ -142,5 +145,11 @@ class mentorController extends Controller
         /*dd($chapter);*/
         $chapter->save();
         return redirect()->route('courses');
+    }
+
+    public function coverImage($id){
+       $cover_id  = $id;
+
+        
     }
 }

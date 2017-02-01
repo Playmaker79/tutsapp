@@ -26,7 +26,6 @@
         body{
             background: #f2f2f2;
         }
-
     </style>
 </head>
 <body>
@@ -89,7 +88,6 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
@@ -101,9 +99,8 @@
                 </div>
             </div>
         </nav>
-        {{--<!-- Scripts -->
-        --}}{{--<script src="/js/app.js"></script>--}}
         @yield('content')
+        {{--<script src="/js/app.js"></script>--}}
     </div>
 </body>
 </html>
