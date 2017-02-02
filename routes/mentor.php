@@ -46,5 +46,9 @@ Route::group(['middleware' =>[('role:mentor')],'prefix' => 'mentor'], function (
     /*Delete a particular course*/
     Route::get('courses/{id}/delete', 'admin\adminController@deleteCourse')
         ->name('deleteCourse');
+
+    /*preview a particular course */
+    Route::get('course/{course_id}/chapter/{id}/preview','mentor\mentorController@previewChapter')
+        ->name('previewChapter');
 });
 

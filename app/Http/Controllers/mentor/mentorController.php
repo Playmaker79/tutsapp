@@ -11,8 +11,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\Types\Array_;
+use Symfony\Component\DomCrawler\Image;
 use Vinkla\Hashids\Facades\Hashids;
 
 class mentorController extends Controller
@@ -148,8 +150,33 @@ class mentorController extends Controller
     }
 
     public function coverImage($id){
-       $cover_id  = $id;
+        $cover = Storage::disk('cover')->get($id);
+        $response = Response::make($cover, 200);
+        $response->header('Content-Type', 'image/png');
+        return $response;
+    }
 
-        
+    /*serve  a specified chapters video tutorial*/
+    public function serveVideo($id){
+        $video = Storage::disk('videos')->get($id);
+        $response = Response::make($video, 200);
+        $response->header('Content-Type', 'video/mp4');
+        return $response;
+    }
+
+    /*Preview a particular chapter*/
+    public function previewChapter($course_id,$id){
+        $id = hd($id);
+        $course_id = hd($course_id);
+        $chapter  = chapter::where('id',$id)->with('course')->where('course_id',$course_id)->first();
+        return view('course.viewChapter')->with('chapter',$chapter);
+    }
+
+    /*preview pdf ebook */
+    public function serveEbook($id){
+        $ebook = Storage::disk('pdf')->get($id);
+        $response = Response::make($ebook, 200);
+        $response->header('Content-Type', 'application/pdf');
+        return $response;
     }
 }

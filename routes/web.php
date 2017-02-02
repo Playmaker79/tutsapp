@@ -27,8 +27,19 @@ Route::get('user/{id}/block','admin\adminController@blockUser')
 Route::get('user/{id}/unblock','admin\adminController@unblockUser')
     ->name('unblockUser');
 
-
+/*serve a course's cover image */
 Route::get('cover/{id}','mentor\mentorController@coverImage')
     ->name('coverImage');
+
+
+/*serve a course's video lesson */
+Route::get('videos/{id}','mentor\mentorController@serveVideo')
+    ->name('serveVideo');
+
+/*serve a course's Ebook */
+Route::get('ebooks/{id}','mentor\mentorController@serveEbook')
+    ->name('serveEbook');
+
+
 
 

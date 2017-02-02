@@ -13,32 +13,45 @@
         margin-bottom:0px !important;
         border-top: 0px;
     }
-    .label-yellow{
-        background: #581200;
+    .label-chapter{
+        background: #141204;
         font-size:16px !important;
+        font-weight: 400px;
     }
     .cover{
         padding:100px;
-       /* background: {{--{{route('coverImage',['id'=>$course->id])}};--}}*/
-        background-color: #ffffff;
+        background: url({{route('coverImage',['id'=>$course->cover])}});
         margin-bottom:20px;
+        background-size: contain;
+    }
+
+    .cover h1{
+        background: linear-gradient(rgb(243, 243, 243),rgba(243, 243, 243, 0.55));
+        font-weight: 300;
+        padding:10px;
     }
 
     .chapter{
         background: linear-gradient(rgba(19, 17, 146, 0),rgba(210, 210, 210, 0.49));
-        margin: 20px 0px;
+        margin-top: 50px !important;
         color:#101010;
         cursor: pointer;
         border:0px !important;
+        border-bottom:2px solid #d1c9e6 !important;
     }
 
     #manage{
         background: white !important;
     }
 
-    .btn-red{
-        background: #e53061;
+    .btn-blue{
+        background: #2579A9;
         color:white;
+    }
+
+    .btn-preview{
+        color:white;
+        background:#55286F;
     }
 </style>
 @section('content')
@@ -49,22 +62,28 @@
             </div>
 
             <div class="container" id="manage">
-                 <div class="col-md-8 col-md-offset-2" >
+                 <div class="col-md-10 col-md-offset-1">
                 <hr>
                 <h3 class="text-center ">Chapters</h3>
                 <hr>
                 <a  href="{{ route('createChapter',['id'=>$id]) }}"
-                    class="center-block button btn-red btn ">Add new chapter</a>
+                    class="center-block button btn-blue btn ">Add new chapter</a>
                 <div class="panel-group">
                     @foreach($course->chapter as $chapter)
+                        <?php $chapter_id = he($chapter->id) ?>
                         <div class="panel panel-default chapter">
-                            <p class="label label-yellow"> Chapter{{$count+=1}}</p>
+                            <p class="label label-chapter"> Chapter{{$count+=1}}</p>
                             <h2 class="text-center">
                                 {{$chapter->name}}
                             </h2>
                             <div class="panel-body">
-                                <a href="#" class="button btn btn-primary pull-right">Edit</a>
-                                <a href="#" class="button btn btn-danger pull-left">Delete</a>
+                                <div class="btn-group inline pull-right">
+                                    <a href="#" class="button btn btn-blue">Edit </a>
+                                    <a href="{{route('previewChapter',['course_id'=>$id,'id'=>$chapter_id])}}" class="button btn btn-preview" target="_blank"> Preview </a>
+                                </div>
+                                <div class="btn-group inline pull-left">
+                                    <a href="#" class="button btn btn-danger pull-left">Delete</a>
+                                </div>
                             </div>
                         </div>
                     @endforeach

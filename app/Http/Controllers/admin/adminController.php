@@ -98,6 +98,7 @@ class adminController extends Controller
         return redirect()->back();
     }
 
+    
     /*delete a course*/
     public function deleteCourse($id){
         $id = hd($id);
