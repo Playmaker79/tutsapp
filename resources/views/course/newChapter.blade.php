@@ -13,8 +13,8 @@
 @section('content')
 
     {{--rich text editor scripts & styles--}}
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+    <link href="/css/summernote.css" rel="stylesheet">
+    <script src="/js/summernote.js"></script>
 
     <div class="container" id="course-wrapper">
         <span class="alert alert-red">- Add a new chapter -</span>
