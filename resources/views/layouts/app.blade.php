@@ -69,7 +69,7 @@
                         @elseif(isMentor())
                             <li><a href="{{ route('createCourse') }}">New course</a></li>
                             <li><a href="{{ route('courses') }}">My courses</a></li>
-                            <li><a href="{{ route('students') }}">Students</a></li>
+                            <li><a href="#">Students</a></li>
                         @elseif(isAdmin())
                             <li><a href="{{ route('ReviewCV') }}">Mentors</a></li>
                             <li><a href="{{ route('Allcourses') }}">Courses</a></li>

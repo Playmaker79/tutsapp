@@ -41,8 +41,8 @@ class mentorController extends Controller
                 $path = $request->cv->store('/','cv');
                 $cv = new cv();
                 $cv->path = $path;
-                Auth::user()->cv()->save($cv);
                 Auth::user()->status = 1;
+                Auth::user()->cv()->save($cv);
                 return redirect('/home');
             }
             else{

@@ -30,7 +30,8 @@ class RoleCheck
             return $next($request);
         }
         else{
-            return redirect('/login');
+            /*redirect user to blocked page*/
+            return redirect()->route('blocked');
         }
     }
 

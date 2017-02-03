@@ -20,12 +20,12 @@ class Newmentor
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        if($user->type == 'mentor' && $user->status == 0 && is_null($user->cv) ){
+        if($user->status == 0 && is_null($user->cv) ){
+            return redirect()->route('uploadCV');
+        }else if($user->status == 1) {
             return $next($request);
-
-        } else {
-
-            return redirect()->route('mentorDash');
+        }else{
+            return redirect()->route('blocked');
         }
     }
 

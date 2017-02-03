@@ -40,6 +40,9 @@ Route::get('videos/{id}','mentor\mentorController@serveVideo')
 Route::get('ebooks/{id}','mentor\mentorController@serveEbook')
     ->name('serveEbook');
 
+Route::get('blocked','HomeController@blocked')
+    ->name('blocked');
+
 
 
 
