@@ -26,7 +26,7 @@ class RoleCheck
         if(Auth::check() && Auth::user()->type == 'admin') {
             return $next($request);
         }
-        elseif(Auth::check() && Auth::user()->type == $role){
+        else if(Auth::check() && Auth::user()->type == $role){
             return $next($request);
         }
         else{

@@ -20,13 +20,18 @@ class Newmentor
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        if($user->status == 0 && is_null($user->cv) ){
-            return redirect()->route('uploadCV');
-        }else if($user->status == 1) {
-            return $next($request);
-        }else{
-            return redirect()->route('blocked');
-        }
+         if(Auth::check() && Auth::user()->type=='admin'){
+             return $next($request);
+         }
+         else{
+             if($user->status == 0 && is_null($user->cv) ){
+                 return redirect()->route('uploadCV');
+             }else if($user->status == 1) {
+                 return $next($request);
+             }else{
+                 return redirect()->route('blocked');
+             }
+         }
     }
 
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\mentor;
 use App\chapter;
 use App\course;
 use App\cv;
+use App\question;
+use App\questions;
+use App\quiz;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
@@ -118,7 +121,6 @@ class mentorController extends Controller
         $course = course::with('chapter')->get()->all();
         if(count($course)!=0){
             $course = course::with('chapter')->where('id',$id)->get()->first();
-           /* return($course);*/
             return view('course.manage')->with('course',$course);
         }
     }
@@ -146,9 +148,12 @@ class mentorController extends Controller
         $chapter->course()->associate($course);
         /*dd($chapter);*/
         $chapter->save();
+
+        //TODO: redirect to course view instead of courses view
         return redirect()->route('courses');
     }
 
+    /*serve the course cover image */
     public function coverImage($id){
         $cover = Storage::disk('cover')->get($id);
         $response = Response::make($cover, 200);
@@ -178,5 +183,38 @@ class mentorController extends Controller
         $response = Response::make($ebook, 200);
         $response->header('Content-Type', 'application/pdf');
         return $response;
+    }
+
+    /*Render Quiz creation form*/
+    public function quizMaker($chapter_id){
+        $chapter_id = hd($chapter_id);
+        $course = chapter::find($chapter_id)->first()->course()->get()->first();
+        $questions = chapter::find($chapter_id)->first()->quiz()->first()->question()->get();
+        /*return $quiz_data*/;
+        return view('quiz.create')
+            ->with('course',$course)
+            ->with('questions',$questions);
+    }
+
+    /*create a new question for the quiz*/
+    public function createQuiz($chapter_id,Request $request){
+        /*find the chapter*/
+        $chapter_id = hd($chapter_id);
+        $chapter = chapter::findOrFail($chapter_id);
+
+        /*select the quiz associated with the chapter*/
+        $quiz = quiz::firstOrCreate(['chapter_id'=>$chapter_id[0]]);
+
+        /* create a new question */
+        $question = new question();
+        $question->question = $request->question;
+        $question->optionA = $request->optionA;
+        $question->optionB = $request->optionB;
+        $question->optionC = $request->optionC;
+        $question->optionD = $request->optionD;
+        $question->answer = $request->answer;
+        $question->quiz_id = $quiz->id;
+        $question->save();
+        return redirect()->route('createQuiz',['id'=>he($chapter_id)]);
     }
 }

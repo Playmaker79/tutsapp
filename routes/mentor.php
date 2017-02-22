@@ -59,8 +59,16 @@ Route::group(['prefix' => 'mentor'], function () {
             ->name('deleteCourse');
 
         /*preview a particular course */
-        Route::get('course/{course_id}/chapter/{id}/preview','mentor\mentorController@previewChapter')
+        Route::get('course/{course_id}/chapter/{id}/preview',        'mentor\mentorController@previewChapter')
             ->name('previewChapter');
+
+        /*preview a particular course */
+        Route::get('chapter/{id}/quiz','mentor\mentorController@quizMaker')
+            ->name('quizMaker');
+
+        /*submit quiz */
+        Route::post('chapter/{id}/quiz','mentor\mentorController@createQuiz')
+            ->name('createQuiz');
     });
 
 });

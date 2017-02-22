@@ -54,7 +54,7 @@
                             <td>
                                 <span class="label label-warning"> New
                                 &nbsp;
-                                <a  class="btn btn-primary"
+                                <a  class="animbtn btn btn-primary"
                                      href="{{ route('approveCV',['id'=>he($cv->id)]) }}"> Approve</a>
                                 </span>
                             </td>
@@ -62,15 +62,15 @@
                             <td>
                                 <span class="label label-success"> Active
                                 &nbsp;
-                                <a  class="btn btn-danger"
-                                    href="{{ route('disapproveCV',['id'=>he($cv->id)]) }}">Block</a>
+                                <a  class="animbtn btn btn-danger"
+                                    href="{{ route('disapproveCV',['id'=>he($cv->id)]) }}" >Block</a>
                                     </span>
                             </td>
                         @elseif($cv->user->status ==2)
                             <td>
                                 <span class="label label-danger"> Blocked
                                 &nbsp;
-                                <a  class="btn btn-success"
+                                <a  class="animbtn btn btn-success"
                                     href="{{ route('approveCV',['id'=>he($cv->id)]) }}">Unblock</a>
                                     </span>
                             </td>

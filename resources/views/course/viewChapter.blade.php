@@ -35,9 +35,6 @@
     }
 </style>
 @section('content')
-    <div class="cover">
-        <h1 class="text-center">{{$chapter->course->name}}</h1>
-    </div>
    <div class="container" id="chapter_data">
        <h2 class="text-center">{{$chapter->name}}</h2>
        <hr>
