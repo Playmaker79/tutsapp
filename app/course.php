@@ -11,7 +11,12 @@ class course extends Model
         return $this->belongsTo('App\user');
     }
 
-    public  function chapter(){
+    public  function chapter()
+    {
         return $this->hasMany('App\chapter');
+    }
+
+    public function enrollment(){
+        return $this->hasMany('App\enrollment');
     }
 }

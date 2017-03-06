@@ -105,9 +105,9 @@ class mentorController extends Controller
        if(count($course)!=0){
           course::destroy($course_id);
            return redirect()->route('courses')->with([
-                'message' =>true,
-                'type' =>'success',
-                'subject'=>'Course deleted'
+               'message' =>true,
+               'type' =>'success',
+               'subject'=>'Course deleted'
            ]);
        }
        else{
@@ -188,8 +188,9 @@ class mentorController extends Controller
     /*Render Quiz creation form*/
     public function quizMaker($chapter_id){
         $chapter_id = hd($chapter_id);
-        $course = chapter::find($chapter_id)->first()->course()->get()->first();
-        $questions = chapter::find($chapter_id)->first()->quiz()->first()->question()->get();
+        $quiz = quiz::firstOrCreate(['chapter_id'=>$chapter_id]);
+        $questions = $quiz->question()->get();
+        $course = $quiz->chapter->course;
         /*return $quiz_data*/;
         return view('quiz.create')
             ->with('course',$course)
@@ -203,7 +204,7 @@ class mentorController extends Controller
         $chapter = chapter::findOrFail($chapter_id);
 
         /*select the quiz associated with the chapter*/
-        $quiz = quiz::firstOrCreate(['chapter_id'=>$chapter_id[0]]);
+        $quiz = quiz::firstOrCreate(['chapter_id'=>$chapter_id]);
 
         /* create a new question */
         $question = new question();

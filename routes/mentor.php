@@ -25,7 +25,6 @@ Route::group(['prefix' => 'mentor'], function () {
         /* Show mentors dashboard when logged in */
         Route::get('dashboard','mentor\mentorController@showDashboard')->name('mentorDash');
 
-
         /*Route for displaying course creation page*/
         Route::get('course','mentor\mentorController@createCourse')
             ->name('createCourse');
@@ -55,14 +54,14 @@ Route::group(['prefix' => 'mentor'], function () {
             ->name('postChapter');
 
         /*Delete a particular course*/
-        Route::get('courses/{id}/delete', 'admin\adminController@deleteCourse')
+        Route::get('courses/{id}/delete','admin\adminController@deleteCourse')
             ->name('deleteCourse');
 
         /*preview a particular course */
-        Route::get('course/{course_id}/chapter/{id}/preview',        'mentor\mentorController@previewChapter')
+        Route::get('course/{course_id}/chapter/{id}/preview','mentor\mentorController@previewChapter')
             ->name('previewChapter');
 
-        /*preview a particular course */
+        /*Load the quiz maker interface*/
         Route::get('chapter/{id}/quiz','mentor\mentorController@quizMaker')
             ->name('quizMaker');
 

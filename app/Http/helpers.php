@@ -27,8 +27,10 @@ function he($id)
 
 /*decode a given string to hashids*/
 function hd($id){
-    return Hashids::decode($id);
+    return Hashids::decode($id)[0];
 }
+
+
 
 /*check whether user is mentor*/
 function isMentor(){
@@ -85,4 +87,14 @@ function storeFile($file, $disk){
 }
 
 
+/*check whether the given item is empty*/
+
+function nothing($item){
+    if(sizeof($item) == 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 

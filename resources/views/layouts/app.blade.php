@@ -75,9 +75,9 @@
                             <li><a href="{{ route('ReviewCV') }}">Mentors</a></li>
                             <li><a href="{{ route('Allcourses') }}">Courses</a></li>
                             <li><a href="{{ route('Allstudents') }}">Students</a></li>
-                        @esleif(isStudent())
+                        @elseif(isStudent())
                             <li><a href="{{ route('courseLibrary') }}">Library</a></li>
-                            <li><a href="{{ route('courseLibrary') }}">My courses</a></li>
+                            <li><a href="{{ route('studentCourses') }}">My courses</a></li>
                         @endif
 
 

@@ -57,5 +57,6 @@ class DatabaseSeeder extends Seeder
             'video'=>'1485311628LyLzRCmjiH.mp4',
             'course_id'=>1
         ]);
+        
     }
 }

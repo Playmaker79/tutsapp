@@ -21,7 +21,7 @@ class CreateEnrollment extends Migration
                 ->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('users')
                 ->onDelete('cascade');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

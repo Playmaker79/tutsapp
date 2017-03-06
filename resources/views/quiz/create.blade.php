@@ -35,7 +35,7 @@
                        <h4>{{$question->question}}</h4>
                    </div>
                     <div class="panel-body">
-                        <table class="table table-hover table-condensed">
+                        <table class="table table-hover table-responsive">
                            <tr>
                                <th>Option A</th>
                                <th>Option B</th>

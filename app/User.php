@@ -38,5 +38,11 @@ class User extends Authenticatable
         return $this->hasMany('App\course');
     }
 
-    
+    public function enrollment(){
+        return $this->hasMany('App\enrollment','student_id');
+    }
+
+    public function getEnrolledCourseAttribute(){
+        return $this->enrollment->course;
+    }
 }
