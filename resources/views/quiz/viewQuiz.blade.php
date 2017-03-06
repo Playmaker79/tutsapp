@@ -42,16 +42,16 @@
                                  <tr>
                                      {{--options--}}
                                      <td>
-                                         <input type="radio" name="option" class="button btn btn-default" value="A"  required > {{$question->optionA}}
+                                         <input type="radio" name="{{ he($question->id) }}" class="button btn btn-default" value="A"  required > {{$question->optionA}}
                                      </td>
                                      <td>
-                                         <input type="radio" name="{{ he($question->id) }}" class="button btn btn-default" value="B" required > {{$question->optionB}}
+                                         <input type="radio" name="{{ he($question->id) }}" class="button btn btn-default" value="B" required> {{$question->optionB}}
                                      </td>
                                      <td>
-                                         <input type="radio" name="{{ he($question->id) }}" class="button btn btn-default" value="C" required > {{$question->optionC}}
+                                         <input type="radio" name="{{ he($question->id) }}" class="button btn btn-default" value="C" required> {{$question->optionC}}
                                      </td>
                                      <td>
-                                         <input type="radio" name="{{ he($question->id) }}" class="button btn btn-default" value="D" required > {{$question->optionD}}
+                                         <input type="radio" name="{{ he($question->id) }}" class="button btn btn-default" value="D" required> {{$question->optionD}}
                                      </td>
                                  </tr>
                              </table>

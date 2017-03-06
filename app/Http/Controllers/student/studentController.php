@@ -23,14 +23,17 @@ class studentController extends Controller
     /*enroll a student to a particular course*/
     public function enroll($id)
     {
-        $course_id = hd($id)[0];
+        $course_id = hd($id);
         if (Auth::user()->enrollment()->count() == 0) {
             $enrollment = Auth::user()->enrollment()->where('course_id', $course_id)->get()->count();
             if ($enrollment == 0) {
-
-                (new enrollment(['student_id' => Auth::user()->id, 'course_id' => $course_id]))->save();
-
-                return redirect()->route('student.CourseView')->with([
+                $enrollment = new  enrollment();
+                    $enrollment->student_id = Auth::user()->id;
+                    $enrollment->course_id = $course_id;
+                    $enrollment->status = 1;
+                $enrollment->save();
+                
+                return redirect()->route('studentCourses')->with([
                     'title' => 'Enrollment success',
                     'message' => 'You have been enrolled to the course',
                     'type' => 'success',
@@ -107,6 +110,22 @@ class studentController extends Controller
         $quiz_data = $request->except('_token','chapter_id');
         $chapter_id = hd($request->chapter_id);
         $questions = chapter::find($chapter_id)->quiz->question()->get();
+
+        foreach ($questions as $question){
+            foreach ($quiz_data as $key => $value){
+                if($question->id == hd($key)){
+                    if($question->answer == $value){
+                        $question->answerd = 'true';
+                    }
+                    else{
+                        $question->answerd = 'false';
+                    }
+                }
+            }
+            return $questions;
+        }
+
+        return $questions;
     }
 }
 
