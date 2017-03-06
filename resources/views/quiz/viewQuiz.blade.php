@@ -11,7 +11,7 @@
             margin:10px;
             color:whitesmoke;
             font-weight:bold;
-            box-shadow: 3px 4px 2px rgba(90, 90, 94, 0.3);
+            box-shadow: 3px 4px 3px rgba(90, 90, 94, 0.3);
         }
         .quiz_table{
             border-top:5px solid #E55469;
@@ -19,6 +19,13 @@
 
         .quiz_table table td{
             font-weight: bold;
+        }
+
+        body{
+            line-height: inherit !important;
+        }
+        .quiz_table h4{
+            margin-top: 2em;
         }
     </style>
      <div id="wrapper">

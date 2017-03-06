@@ -32,7 +32,7 @@ class studentController extends Controller
                     $enrollment->course_id = $course_id;
                     $enrollment->status = 1;
                 $enrollment->save();
-                
+
                 return redirect()->route('studentCourses')->with([
                     'title' => 'Enrollment success',
                     'message' => 'You have been enrolled to the course',
@@ -115,10 +115,11 @@ class studentController extends Controller
             foreach ($quiz_data as $key => $value){
                 if($question->id == hd($key)){
                     if($question->answer == $value){
-                        $question->answerd = 'true';
+                        echo $question->id."</br>";
+                        $question->answerd = true;
                     }
                     else{
-                        $question->answerd = 'false';
+                        $question->answerd = false;
                     }
                 }
             }
