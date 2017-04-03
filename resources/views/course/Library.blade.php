@@ -56,6 +56,7 @@ function makeColor(){
         border-radius: 10px;
         font-size: 15px;
         display:none;
+        z-index: 99;
     }
     .toastup-error{
         background: rgba(255, 34, 12, 0.56);

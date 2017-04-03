@@ -9,6 +9,7 @@ use App\quiz;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -79,7 +80,7 @@ class studentController extends Controller
     public function viewCourse($id){
         $id = hd($id);
         $course =  course::withCount('chapter')->with('chapter')->where('id',$id)->first();
-        /*return $course;*/
+        /*dd($course);*/
         return view('student.course')->with('course',$course);
     }
 
@@ -107,15 +108,21 @@ class studentController extends Controller
      * @return mixed
      */
     public function postQuiz(Request $request){
+        $score = null;
+        $total = null;
         $quiz_data = $request->except('_token','chapter_id');
         $chapter_id = hd($request->chapter_id);
         $questions = chapter::find($chapter_id)->quiz->question()->get();
-
+        /*
+            Evaluate each question attended
+            Check whether the answer is correct
+        */
         foreach ($questions as $question){
             foreach ($quiz_data as $key => $value){
                 if($question->id == hd($key)){
+                    $total = $total+10;
                     if($question->answer == $value){
-                        echo $question->id."</br>";
+                        $score+=10;
                         $question->answerd = true;
                     }
                     else{
@@ -123,10 +130,26 @@ class studentController extends Controller
                     }
                 }
             }
-            return $questions;
         }
 
-        return $questions;
+        /*checking wether the score is above 80%*/
+        if(($score/$total)*100 >= 80 ){
+            $status ='passed';
+        }
+        else{
+            $status = 'failed';
+        }
+
+        /*quiz results*/
+        $results = [
+            'total' => $total,
+            'score' =>$score,
+            'status'=>$status
+        ];
+
+        
+        return view('quiz.review')->with(['questions'=>$questions,'results'=>collect($results)]);
     }
+
 }
 

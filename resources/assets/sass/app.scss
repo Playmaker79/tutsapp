@@ -1,9 +1,39 @@
-
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
 // Variables
 @import "variables";
 
 // Bootstrap
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+//quiz styles
+@import "quiz";
+
+
+#reply-box{
+  padding: 10px;
+  border-top:3px solid $brand-primary;
+}
+
+body{
+  font-family:'Montserrat', sans-serif
+}
+
+.navbar{
+  margin-bottom: 0px;
+}
+
+.navbar .container{
+  background: none;
+}
+
+
+//discussion feed --move to partial
+.feed .panel-footer {
+  background: $brand-primary;
+  color:$brand-white;
+  p span{
+    font-weight: bold;
+    color:$brand-yellow;
+  }
+}

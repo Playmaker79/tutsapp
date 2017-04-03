@@ -29,6 +29,9 @@ class RoleCheck
         else if(Auth::check() && Auth::user()->type == $role){
             return $next($request);
         }
+        else if(Auth::check() && $role == 'user'){
+            return $next($request);
+        }
         else{
             /*redirect user to blocked page*/
             return redirect()->route('blocked');

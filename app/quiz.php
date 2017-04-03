@@ -17,4 +17,6 @@ class quiz extends Model
     protected $fillable = [
         'chapter_id'
     ];
+    
+    
 }

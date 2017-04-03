@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
   <div class="container">
-      <div class="panel panel-danger">
+      <div class="panel panel-primary">
           <div class="panel-heading">
               <h1 class="text-center">Account Blocked!</h1>
           </div>

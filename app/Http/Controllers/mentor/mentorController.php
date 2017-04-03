@@ -205,8 +205,6 @@ class mentorController extends Controller
 
         /*select the quiz associated with the chapter*/
         $quiz = quiz::firstOrCreate(['chapter_id'=>$chapter_id]);
-
-        /* create a new question */
         $question = new question();
         $question->question = $request->question;
         $question->optionA = $request->optionA;

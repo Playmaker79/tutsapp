@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -21,19 +20,15 @@
         ]); ?>
     </script>
     <style>
-        *{
-            font-family: "Segoe UI";
-            font-weight: 200;
-        }
-        body{
-            background: #f2f2f2;
-
+        .cover{
+            background-size: cover;
         }
     </style>
+  
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top ">
+        <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -47,9 +42,6 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="/images/idea.svg" alt="logo" width="30px" height="30px">
-                    </a>
-                    <a class="navbar-brand" href="{{ url('/') }}">
                         <b>{{ config('app.name', 'Laravel') }}</b>
                     </a>
 
@@ -57,7 +49,7 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav ">
+                    <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
 
@@ -79,9 +71,9 @@
                             <li><a href="{{ route('courseLibrary') }}">Library</a></li>
                             <li><a href="{{ route('studentCourses') }}">My courses</a></li>
                         @endif
-
-
+                            {{--<li><a href="{{ route('forumFeed') }}">Forum</a></li>--}}
                           @if(Auth::check())
+                            <li><a href="{{ route('forumFeed') }}">Forum</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -108,5 +100,6 @@
         @yield('content')
         {{--<script src="/js/app.js"></script>--}}
     </div>
+
 </body>
 </html>
