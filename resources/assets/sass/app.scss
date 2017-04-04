@@ -29,11 +29,20 @@ body{
 
 
 //discussion feed --move to partial
-.feed .panel-footer {
+.feed .panel-footer{
   background: $brand-primary;
   color:$brand-white;
   p span{
     font-weight: bold;
     color:$brand-yellow;
+  }
+}
+
+.forumReply {
+  .panel-heading p{
+    color:$gray-light;
+  }
+  .panel-content p{
+    padding-left: 10px;
   }
 }

@@ -7744,4 +7744,12 @@ body {
   color: #EEE0CB;
 }
 
+.forumReply .panel-heading p {
+  color: #777777;
+}
+
+.forumReply .panel-content p {
+  padding-left: 10px;
+}
+
 /*# sourceMappingURL=app.css.map */

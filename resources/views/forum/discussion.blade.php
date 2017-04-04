@@ -1,20 +1,19 @@
 @extends('layouts.app')
 @section('content')
-<div class="panel">
+<div class="panel" id="forumQuestion">
     <div class="panel-heading">
         <hr>
-        <h1 class="text-center">Discussion Forum</h1>
+        <h3 class="text-center">{{$question->question}}</h3>
         <hr>
+        <P class="post_user text-right">
+            <i>Posted by</i> <span>{{$question->user->name}}</span>
+            On <span> {{$question->created_at->format('F j, Y')}} </span></p>
     </div>
 </div>
-<div class="panel container">
-    <div class="panel-heading">
-        <h3>{{$discussions->question}}</h3>
-    </div>
-</div>
-
+@include('forum.common.replies')
 <div id="reply-box" class="panel container">
-    <form action="{{ route('postDiscussion',['id'=>$discussions->id]) }}" method="post">
+    <form action="{{ route('postDiscussion',['id'=>he($question->id)]) }}" method="post">
+        {{ csrf_field() }}
         <div class="form-group">
             <label for="reply">leave a reply</label>
             <textarea name="reply" id="" cols="30" rows="5" class="form-control"></textarea>
@@ -24,7 +23,6 @@
         </div>
         <br>
     </form>
-
 </div>
 </div>
 @endsection

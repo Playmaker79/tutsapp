@@ -95,7 +95,7 @@ function makeColor(){
                         <div class="caption">
                             <h3>{{$course->name}}</h3>
                             <p>{{$course->description}}</p>
-                            <a href="{{route('enroll',['id'=>he($course->id)])}}" class="btn button pull-right clear btn-enroll center-block">Enroll</a>
+                            <a href="{{route('enroll',['id'=>he($course->id)])}}" class="btn button pull-right clear btn-enroll center-block btn-primary">Enroll</a>
                         </div>
                     </div>
                 </div>
